@@ -274,5 +274,17 @@ RSpec.describe Api::V1::DevicesController, type: :controller do
 
     it { expect(response).to have_http_status 200 }
     it { expect(assigns(:device).destroyed?).to eql(true) }
+    it { expect(JSON.parse(response.body)).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['device_mac']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['serial_no']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['color']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['name']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['description']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['building']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['level']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['device_threshold']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['id']).not_to be_nil }
+    it { expect(JSON.parse(response.body)['device']['id']).to eql(device.id) }
   end
 end
